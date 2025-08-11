@@ -360,18 +360,27 @@
             // | GUI | CTRL | SHFT | LWR | SPC |   | ENT | RSE  | BKSP | ALT | ESC |
 
             bindings = <
-&kp GRAVE       &kp Q           &hm RIGHT_ALT W  &kp E          &kp R             &kp T         &kp Y  &kp U             &kp I               &hm RIGHT_ALT O  &kp P              &kp BACKSLASH
-&kp EQUAL       &hm LEFT_GUI A  &hm LEFT_ALT S   &hm LCTRL D    &hm LEFT_SHIFT F  &kp G         &kp H  &hm LEFT_SHIFT J  &hm LEFT_CONTROL K  &hm LEFT_ALT L   &hm LEFT_GUI SEMI  &kp SQT
-&kp LEFT_SHIFT  &kp Z           &kp X            &kp C          &kp V             &kp B         &kp N  &kp M             &kp COMMA           &kp DOT          &kp FSLH           &kp RIGHT_SHIFT
-                                                 &kp BACKSPACE  &lt 4 ENTER       &kp DELETE    &mo 3  &kp TAB           &kp SPACE
+&kp GRAVE       &kp Q           &hm RIGHT_ALT W  &kp E          &kp R             &kp T         &kp Y    &kp U             &kp I               &hm RIGHT_ALT O  &kp P              &kp BACKSLASH
+&kp EQUAL       &hm LEFT_GUI A  &hm LEFT_ALT S   &hm LCTRL D    &hm LEFT_SHIFT F  &lt 1 G       &lt 1 H  &hm LEFT_SHIFT J  &hm LEFT_CONTROL K  &hm LEFT_ALT L   &hm LEFT_GUI SEMI  &kp SQT
+&kp LEFT_SHIFT  &kp Z           &kp X            &kp C          &kp V             &kp B         &kp N    &kp M             &kp COMMA           &kp DOT          &kp FSLH           &kp RIGHT_SHIFT
+                                                 &kp BACKSPACE  &lt 5 ENTER       &kp DELETE    &mo 4    &kp TAB           &kp SPACE
+            >;
+        };
+
+        NO_HM {
+            bindings = <
+&trans  &trans  &kp W   &trans  &trans  &trans    &trans  &trans  &trans  &kp O   &trans    &trans
+&trans  &kp A   &kp S   &kp D   &kp F   &trans    &trans  &kp J   &kp K   &kp L   &kp SEMI  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans    &trans
+                        &trans  &trans  &trans    &trans  &trans  &trans
             >;
         };
 
         GAME {
             bindings = <
-&kp ESC    &trans  &kp W   &trans     &trans   &trans    &trans  &trans  &trans  &kp O   &trans    &trans
-&kp LCTRL  &kp A   &kp S   &kp D      &kp F    &trans    &trans  &kp J   &kp K   &kp L   &kp SEMI  &trans
-&trans     &trans  &trans  &trans     &trans   &trans    &trans  &trans  &trans  &trans  &trans    &trans
+&kp ESC    &trans  &trans  &trans     &trans   &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&kp LCTRL  &trans  &trans  &trans     &trans   &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans     &trans  &trans  &trans     &trans   &trans    &trans  &trans  &trans  &trans  &trans  &trans
                            &kp SPACE  &kp TAB  &to 0     &trans  &trans  &trans
             >;
         };
