@@ -359,7 +359,7 @@
 &kp GRAVE       &kp Q           &hm RIGHT_ALT W  &kp E          &kp R             &kp T        &kp Y    &kp U             &kp I               &hm RIGHT_ALT O  &kp P              &kp BACKSLASH
 &kp EQUAL       &hm LEFT_GUI A  &hm LEFT_ALT S   &hm LCTRL D    &hm LEFT_SHIFT F  &lt 1 G      &lt 1 H  &hm LEFT_SHIFT J  &hm LEFT_CONTROL K  &hm LEFT_ALT L   &hm LEFT_GUI SEMI  &kp SQT
 &kp LEFT_SHIFT  &kp Z           &kp X            &kp C          &kp V             &kp B        &kp N    &kp M             &kp COMMA           &kp DOT          &kp FSLH           &kp RIGHT_SHIFT
-                                                 &kp BACKSPACE  &lt 6 ENTER       &lt 4 DEL    &mo 5    &kp TAB           &kp SPACE
+                                                 &kp BACKSPACE  &lt 5 ENTER       &lt 3 DEL    &mo 4    &kp TAB           &kp SPACE
             >;
         };
 
