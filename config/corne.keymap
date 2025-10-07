@@ -162,6 +162,20 @@
             label = "SHIFTCCEDILLA";
             tap-ms = <15>;
         };
+
+        GApostrophe: apostrophe {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LALT>,
+                <&macro_tap>,
+                <&kp KP_NUMBER_0 &kp KP_NUMBER_1 &kp KP_NUMBER_4 &kp KP_NUMBER_6>,
+                <&macro_release>,
+                <&kp LALT>;
+
+            label = "APOSTROPHE";
+        };
     };
 
     keymap {
@@ -179,7 +193,7 @@
             bindings = <
 &kp RIGHT_BRACKET  &kp B           &lt 2 NUMBER_2  &kp P          &kp O          &kp N7       &kp LEFT_BRACKET  &kp V    &kp D               &lt 2 L         &kp J           &kp N9
 &kp LS(SQT)        &hm LEFT_GUI Q  &hm LEFT_ALT U  &hm LCTRL I    &lt 1 E        &lt 4 M      &lt 4 C           &lt 1 T  &hm LEFT_CONTROL S  &hm LEFT_ALT R  &hm LEFT_GUI N  &kp SEMICOLON
-&kp W              &kp N0          &kp Y           &kp X          &kp LS(COMMA)  &kp K        &kp M             &kp A    &kp G               &kp H           &kp F           &kp Z
+&kp W              &kp N0          &kp Y           &kp X          &kp LS(COMMA)  &kp K        &GApostrophe      &kp A    &kp G               &kp H           &kp F           &kp Z
                                                    &kp BACKSPACE  &lt 8 ENTER    &lt 6 DEL    &mo 7             &kp TAB  &kp SPACE
             >;
         };
