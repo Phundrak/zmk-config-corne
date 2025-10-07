@@ -11,20 +11,30 @@
 
 #define MACRO_TAP_MS 15
 
-#define ALT_CODE(name, n1, n2, n3, n4)                                 \
-    name: name {                                                       \
-        compatible = "zmk,behavior-macro";                             \
-        #binding-cells = <0>;                                          \
-        bindings =                                                     \
-            <&macro_press>,                                            \
-            <&kp LALT>,                                                \
-            <&macro_tap>,                                              \
+#define ALT_CODE(name, n1, n2, n3, n4)                                                     \
+    name: name {                                                                           \
+        compatible = "zmk,behavior-macro";                                                 \
+        #binding-cells = <0>;                                                              \
+        bindings =                                                                         \
+            <&macro_press>,                                                                \
+            <&kp LALT>,                                                                    \
+            <&macro_tap>,                                                                  \
             <&kp KP_NUMBER_##n1 &kp KP_NUMBER_##n2 &kp KP_NUMBER_##n3 &kp KP_NUMBER_##n4>, \
-            <&macro_release>,                                          \
-            <&kp LALT>;                                                \
-                                                                       \
-        label = #name;                                                 \
-        tap-ms = <MACRO_TAP_MS>;                                       \
+            <&macro_release>,                                                              \
+            <&kp LALT>;                                                                    \
+                                                                                           \
+        label = #name;                                                                     \
+        tap-ms = <MACRO_TAP_MS>;                                                           \
+    };
+
+#define HT(name, hold, tap)                   \
+    name: name {                              \
+        compatible = "zmk,behavior-hold-tap"; \
+        label = #name;                        \
+        bindings = <hold>, <tap>;             \
+                                              \
+        #binding-cells = <2>;                 \
+        tapping-term-ms = <200>;              \
     };
 
 / {
@@ -74,14 +84,10 @@
             mods = <(MOD_LSFT)>;
         };
 
-        ShiftEAcuteRAlt: ShiftEAcuteRAlt {
-            compatible = "zmk,behavior-hold-tap";
-            label = "SHIFTEACUTERALT";
-            bindings = <&mo>, <&ShiftEAcute>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-        };
+        HT(EAcuteShiftRAlt, &mo, &EAcuteShift)
+        HT(LShiftRAlt, &mo, &kp)
+        HT(EShiftRAlt, &mo, &Euro)
+        HT(TShiftRAlt, &mo, &none)
     };
 
     combos {
@@ -137,22 +143,63 @@
     //
 
     macros {
-        ALT_CODE(ShiftEAcute, 0, 2, 0, 1) // É
-        ALT_CODE(ShiftCCedilla, 0, 1, 4, 6) // Ç
-        ALT_CODE(GApostrophe, 0, 1, 4, 6) // ’
+        ALT_CODE(Ae, 0, 2, 3, 0) // æ
+        ALT_CODE(AeShift, 0, 1, 9, 8) // Æ
+        ALT_CODE(AposTypo, 0, 1, 4, 6) // ’
+        ALT_CODE(CCedillaShift, 0, 1, 9, 9) // Ç
+        ALT_CODE(EAcuteShift, 0, 2, 0, 1) // É
+        ALT_CODE(Ellipsis, 0, 1, 3, 3) // …
+        ALT_CODE(EmDash, 0, 1, 5, 1) // — Em dash
+        ALT_CODE(EnDash, 0, 1, 5, 0) // – En dash
+        ALT_CODE(Euro, 0, 1, 2, 8) // – En dash
+        ALT_CODE(GraveAccent, 0, 0, 9, 6) // `
+        ALT_CODE(InvExcl, 0, 1, 6, 1) // ¡
+        ALT_CODE(InvQues, 0, 1, 9, 1) // ¿
+        ALT_CODE(OeLower, 0, 1, 5, 6) // œ
+        ALT_CODE(OeShift, 0, 1, 4, 0) // Œ
+        ALT_CODE(Pilcrow, 0, 1, 8, 2) // ¶
+        ALT_CODE(PourMille, 0, 1, 3, 7) // ’
+        ALT_CODE(Tilde, 0, 1, 2, 6) // ~
+        ALT_CODE(Pound, 0, 1, 5, 6) // £
+        ALT_CODE(Copyright, 0, 1, 6, 9) // ©
+        ALT_CODE(Trademark, 0, 1, 5, 3) // ™
+        ALT_CODE(Registered, 0, 1, 7, 4) // ®
+        ALT_CODE(SingleQuoteLow, 0, 1, 3, 0) // ‚
+        ALT_CODE(SingleQuoteLeft, 0, 1, 4, 5) // ‘
+        ALT_CODE(SingleQuoteRight, 0, 1, 4, 6) // ’
+        ALT_CODE(MiddleDot, 0, 1, 8, 3) // ·
+        ALT_CODE(NBSP, 0, 1, 6, 0) // &nbsp;
+        ALT_CODE(Dagger, 0, 1, 3, 4) // †
+        ALT_CODE(DDagger, 0, 1, 3, 5) // ‡
+        ALT_CODE(GuillemetLeft, 0, 1, 7, 1) // «
+        ALT_CODE(GuillemetRight, 0, 1, 8, 7) // »
 
-        ShiftAGrave: ShiftAGrave {
+        AGraveShift: AGraveShift {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp RA(N7) &kp LS(Q)>;
-            label = "SHIFTAGRAVE";
+            label = "À";
         };
 
-        ShiftEGrave: ShiftEGrave {
+        EGraveShift: EGraveShift {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp RA(N7) &kp LS(E)>;
             label = "È";
+        };
+
+        UGrave: UGrave {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp RA(N7) &kp U>;
+            label = "ù";
+        };
+
+        UGraveShift: UGraveShift {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp RA(N7) &kp LS(U)>;
+            label = "Ù";
         };
     };
 
@@ -162,62 +209,87 @@
         BASE {
             display-name = "Base";
 
-            // -----------------------------------------------------------------------------------------
-            // |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  |
-            // |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |
-            // |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  |
-            // | GUI | CTRL | SHFT | LWR | SPC |   | ENT | RSE  | BKSP | ALT | ESC |
+            // ------------------------------------------------------------------------------
+            // |  $  |  b  |  é  |  p  |  o  |  è  |   |  ^  |  v   |  d  |  l  |  j  |  ç  |
+            // |  %  |  a  |  u  |  i  |  e  |  ,  |   |  c  |  t   |  s  |  r  |  n  |  m  |
+            // |  z  |  à  |  y  |  x  |  .  |  k  |   |  ’  |  q   |  g  |  h  |  f  |  w  |
+            //                  | BKSP | RET | SYM |   | M&M | TAB  | SPC |
 
             bindings = <
 &kp RIGHT_BRACKET  &kp B           &lt 2 NUMBER_2  &kp P          &kp O          &kp N7       &kp LEFT_BRACKET  &kp V    &kp D               &lt 2 L         &kp J           &kp N9
 &kp LS(SQT)        &hm LEFT_GUI Q  &hm LEFT_ALT U  &hm LCTRL I    &lt 1 E        &lt 4 M      &lt 4 C           &lt 1 T  &hm LEFT_CONTROL S  &hm LEFT_ALT R  &hm LEFT_GUI N  &kp SEMICOLON
-&kp W              &kp N0          &kp Y           &kp X          &kp LS(COMMA)  &kp K        &GApostrophe      &kp A    &kp G               &kp H           &kp F           &kp Z
+&kp W              &kp N0          &kp Y           &kp X          &kp LS(COMMA)  &kp K        &AposTypo         &kp A    &kp G               &kp H           &kp F           &kp Z
                                                    &kp BACKSPACE  &lt 8 ENTER    &lt 6 DEL    &mo 7             &kp TAB  &kp SPACE
             >;
         };
 
         Shift {
-            bindings = <
-&kp RA(N3)     &kp LS(B)       &ShiftEAcuteRAlt 3 0  &kp LS(P)               &kp LS(O)   &ShiftEGrave    &kp SLASH  &kp LS(V)  &kp LS(D)               &kp LS(L)       &kp LS(J)       &ShiftCCedilla
-&kp RA(GRAVE)  &hm LGUI LS(Q)  &hm LALT LS(U)        &hm LEFT_CONTROL LS(I)  &kp LS(E)   &kp COMMA       &kp LS(C)  &kp LS(T)  &hm LEFT_CONTROL LS(S)  &hm LALT LS(R)  &hm LGUI LS(N)  &kp LS(SEMICOLON)
-&kp LS(W)      &ShiftAGrave    &kp LS(Y)             &kp LS(X)               &kp PERIOD  &kp LS(K)       &kp LS(M)  &kp LS(A)  &kp LS(G)               &kp LS(H)       &kp LS(F)       &kp LS(Z)
-                                                     &trans                  &trans      &trans          &trans     &trans     &trans
-            >;
+            display-name = "Shift";
 
-            label = "Shift";
+            // ------------------------------------------------------------------------------
+            // |  #  |  B  |  É  |  P  |  O  |  È  |   |  !  |  V   |  D  |  L  |  J  |  Ç  |
+            // |  `  |  A  |  U  |  I  |  E  |  ;  |   |  C  |  T   |  S  |  R  |  N  |  M  |
+            // |  Z  |  À  |  Y  |  X  |  :  |  K  |   |  ?  |  Q   |  G  |  H  |  F  |  W  |
+            //                   |     |     |     |   |     |      |     |
+
+            bindings = <
+&kp RA(N3)     &kp LS(B)       &EAcuteShiftRAlt 3 0  &kp LS(P)               &kp LS(O)   &EGraveShift    &kp SLASH  &kp LS(V)  &kp LS(D)               &LShiftRAlt 3 LS(L)  &kp LS(J)       &CCedillaShift
+&GraveAccent   &hm LGUI LS(Q)  &hm LALT LS(U)        &hm LEFT_CONTROL LS(I)  &kp LS(E)   &kp COMMA       &kp LS(C)  &kp LS(T)  &hm LEFT_CONTROL LS(S)  &hm LALT LS(R)       &hm LGUI LS(N)  &kp LS(SEMICOLON)
+&kp LS(W)      &AGraveShift    &kp LS(Y)             &kp LS(X)               &kp PERIOD  &kp LS(K)       &kp LS(M)  &kp LS(A)  &kp LS(G)               &kp LS(H)            &kp LS(F)       &kp LS(Z)
+                                                     &trans                  &trans      &trans          &trans     &trans     &NBSP
+            >;
         };
 
         AltGr {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans    &trans  &trans  &trans
-            >;
+            display-name = "AltGr";
 
-            label = "AltGr";
+            // ------------------------------------------------------------------------------
+            // |  –  |  |  |  ´  |  &  |  œ  |  `  |   |  ¡  |      |     |     |     |     |
+            // |  ‰  |  æ  |  ù  |  ¨  |  €  |  '  |   |     |      |     |     |  ~  |     |
+            // |     |  \  |  {  |  }  |  …  |  ~  |   |  ¿  |      |     |     |     |     |
+            //                   |     |     |     |   |     |      |  _  |
+
+            bindings = <
+&EnDash     &kp RA(N6)  &none       &kp N1                 &OeLower         &none      &InvExcl  &none             &none   &none  &none       &none
+&PourMille  &Ae         &UGrave     &kp LS(RIGHT_BRACKET)  &EShiftRAlt 3 0  &kp N4     &none     &TShiftRAlt 3 0   &none   &none  &kp RA(N2)  &none
+&none       &kp RA(N8)  &kp RA(N4)  &kp RA(EQUAL)          &Ellipsis        &Tilde     &InvQues  &none             &none   &none  &none       &none
+                                    &trans                 &trans           &trans     &trans    &trans            &kp N8
+            >;
         };
 
         AltGrShift {
+            display-name = "AltGrShift";
+
+            // ------------------------------------------------------------------------------
+            // |  ¶  |     |     |  §  |  Œ  |     |   |     |      |     |  £  |     |     |
+            // |     |  Æ  |  Ù  |     |     |     |   |  ©  |  ™   |     |  ®  |     |     |
+            // |     |  ‚  |  ‘  |  ’  |  ·  |     |   |     |      |  †  |  ‡  |     |     |
+            //                   |     |     |     |   |     |      |     |
+
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans    &trans  &trans  &trans
+&Pilcrow  &none            &none             &kp LS(SLASH)      &OeShift    &none   &none       &none       &none    &Pound       &none  &none
+&none     &AeShift         &UGraveShift      &none              &none       &none   &Copyright  &Trademark  &none    &Registered  &none  &none
+&none     &SingleQuoteLow  &SingleQuoteLeft  &SingleQuoteRight  &MiddleDot  &none   &none       &none       &Dagger  &DDagger     &none  &none
+                                             &trans             &trans      &trans  &trans      &trans      &NBSP
             >;
 
-            label = "AGrShift";
         };
 
         NO_HM {
+            display-name = "NO-HM";
+
+            // ------------------------------------------------------------------------------
+            // |     |     |  é  |     |     |     |   |     |      |     |  l  |     |     |
+            // |     |  a  |  u  |  i  |  e  |     |   |     |  t   |  s  |  r  |  n  |     |
+            // |     |     |     |     |     |     |   |     |      |     |     |     |     |
+            //                   |     |     |     |   |     |      |     |
             bindings = <
-&trans  &trans  &kp W   &trans  &trans  &trans    &trans  &trans  &trans  &kp O   &trans    &trans
-&trans  &kp A   &kp S   &kp D   &kp F   &trans    &trans  &kp J   &kp K   &kp L   &kp SEMI  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans    &trans
+&trans  &trans  &kp N2  &trans  &trans  &trans    &trans  &trans  &trans  &kp L   &trans  &trans
+&trans  &kp A   &kp U   &kp I   &kp E   &trans    &trans  &kp T   &kp S   &kp R   &kp N   &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
                         &trans  &trans  &trans    &trans  &trans  &trans
             >;
 
-            label = "no home";
         };
 
         GAME {
@@ -234,17 +306,17 @@
         SYM {
             display-name = "Symbols";
 
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-            // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-            // | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
+            // -------------------------------------------------------------------------------
+            // |  DEL |  "  |  «  |  »  |  (  |  )  |   |  @  |  +   |  -  |  /  |  *  |  =  |
+            // | PRSC |  1  |  2  |  3  |  4  |  5  |   |  6  |  7   |  8  |  9  |  0  |  °  |
+            // |  F11 | F1  | F2  | F3  | F4  | F5  |   | F6  |  F7  | F8  | F9  | F10 | F12 |
+            //                    |     |     |     |   |     | HOME | END |
 
             bindings = <
-&kp DEL          &kp N1      &kp N2      &kp N3      &kp N4      &kp N5        &kp N6      &kp N7      &kp N8      &kp N9      &kp N0      &kp MINUS
-&kp PRINTSCREEN  &kp LS(N1)  &kp LS(N2)  &kp LS(N3)  &kp LS(N4)  &kp LS(N5)    &kp LS(N6)  &kp LS(N7)  &kp LS(N8)  &kp LS(N9)  &kp LS(N0)  &kp MINUS
-&kp F11          &kp F1      &kp F2      &kp F3      &kp F4      &kp F5        &kp F6      &kp F7      &kp F8      &kp F9      &kp F10     &kp F12
-                                         &none       &none       &trans        &tog 4      &kp HOME    &kp END
+&kp DEL          &kp N3      &GuillemetLeft  &GuillemetRight &kp N5      &kp MINUS     &kp RA(N0)  &kp LS(EQUAL)  &kp N6      &kp LS(PERIOD)  &kp APOS    &kp EQUAL
+&kp PRINTSCREEN  &kp LS(N1)  &kp LS(N2)      &kp LS(N3)      &kp LS(N4)  &kp LS(N5)    &kp LS(N6)  &kp LS(N7)     &kp LS(N8)  &kp LS(N9)      &kp LS(N0)  &kp LS(MINUS)
+&kp F11          &kp F1      &kp F2          &kp F3          &kp F4      &kp F5        &kp F6      &kp F7         &kp F8      &kp F9          &kp F10     &kp F12
+                                             &none           &none       &trans        &tog 4      &kp HOME       &kp END
             >;
         };
 
