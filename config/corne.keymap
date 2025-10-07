@@ -9,6 +9,24 @@
 #define ADJ 3
 #define EXTRA 4
 
+#define MACRO_TAP_MS 15
+
+#define ALT_CODE(name, n1, n2, n3, n4)                                 \
+    name: name {                                                       \
+        compatible = "zmk,behavior-macro";                             \
+        #binding-cells = <0>;                                          \
+        bindings =                                                     \
+            <&macro_press>,                                            \
+            <&kp LALT>,                                                \
+            <&macro_tap>,                                              \
+            <&kp KP_NUMBER_##n1 &kp KP_NUMBER_##n2 &kp KP_NUMBER_##n3 &kp KP_NUMBER_##n4>, \
+            <&macro_release>,                                          \
+            <&kp LALT>;                                                \
+                                                                       \
+        label = #name;                                                 \
+        tap-ms = <MACRO_TAP_MS>;                                       \
+    };
+
 / {
     behaviors {
         hm: homerow_mods {
@@ -119,20 +137,9 @@
     //
 
     macros {
-        ShiftEAcute: ShiftEAcute {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings =
-                <&macro_press>,
-                <&kp LEFT_ALT>,
-                <&macro_tap>,
-                <&kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_0 &kp KP_NUMBER_1>,
-                <&macro_release>,
-                <&kp LALT>;
-
-            label = "SHIFTEACUTE";
-            tap-ms = <15>;
-        };
+        ALT_CODE(ShiftEAcute, 0, 2, 0, 1) // É
+        ALT_CODE(ShiftCCedilla, 0, 1, 4, 6) // Ç
+        ALT_CODE(GApostrophe, 0, 1, 4, 6) // ’
 
         ShiftAGrave: ShiftAGrave {
             compatible = "zmk,behavior-macro";
@@ -146,35 +153,6 @@
             #binding-cells = <0>;
             bindings = <&kp RA(N7) &kp LS(E)>;
             label = "È";
-        };
-
-        ShiftCCedilla: ShiftCCedilla {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings =
-                <&macro_press>,
-                <&kp LALT>,
-                <&macro_tap>,
-                <&kp KP_NUMBER_0 &kp KP_NUMBER_1 &kp KP_NUMBER_9 &kp KP_NUMBER_9>,
-                <&macro_release>,
-                <&kp LALT>;
-
-            label = "SHIFTCCEDILLA";
-            tap-ms = <15>;
-        };
-
-        GApostrophe: apostrophe {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings =
-                <&macro_press>,
-                <&kp LALT>,
-                <&macro_tap>,
-                <&kp KP_NUMBER_0 &kp KP_NUMBER_1 &kp KP_NUMBER_4 &kp KP_NUMBER_6>,
-                <&macro_release>,
-                <&kp LALT>;
-
-            label = "APOSTROPHE";
         };
     };
 
