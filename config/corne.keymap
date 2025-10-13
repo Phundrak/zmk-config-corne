@@ -245,10 +245,10 @@
             //                   |     |     |     |   |     |      |     |
 
             bindings = <
-&kp RA(N3)    &kp LS(B)       &EAcuteShiftRAlt 3 0  &kp LS(P)               &kp LS(O)   &EGraveShift    &kp SLASH  &kp LS(V)  &kp LS(D)               &LShiftRAlt 3 LS(L)  &kp LS(J)       &CCedillaShift
-&GraveAccent  &hm LGUI LS(Q)  &hm LALT LS(U)        &hm LEFT_CONTROL LS(I)  &kp LS(E)   &kp COMMA       &kp LS(C)  &kp LS(T)  &hm LEFT_CONTROL LS(S)  &hm LALT LS(R)       &hm LGUI LS(N)  &kp LS(SEMICOLON)
-&kp LS(W)     &AGraveShift    &kp LS(Y)             &kp LS(X)               &kp PERIOD  &kp LS(K)       &kp LS(M)  &kp LS(A)  &kp LS(G)               &kp LS(H)            &kp LS(F)       &kp LS(Z)
-                                                    &trans                  &trans      &trans          &trans     &trans     &NBSP
+&kp RA(N3)    &kp LS(B)       &EAcuteShiftRAlt 3 0  &kp LS(P)               &kp LS(O)      &EGraveShift  &kp SLASH  &kp LS(V)    &kp LS(D)               &LShiftRAlt 3 LS(L)  &kp LS(J)       &CCedillaShift
+&GraveAccent  &hm LGUI LS(Q)  &hm LALT LS(U)        &hm LEFT_CONTROL LS(I)  &kp LS(E)      &kp COMMA     &kp LS(C)  &kp LS(T)    &hm LEFT_CONTROL LS(S)  &hm LALT LS(R)       &hm LGUI LS(N)  &kp LS(SEMICOLON)
+&kp LS(W)     &AGraveShift    &kp LS(Y)             &kp LS(X)               &kp PERIOD     &kp LS(K)     &kp LS(M)  &kp LS(A)    &kp LS(G)               &kp LS(H)            &kp LS(F)       &kp LS(Z)
+                                                    &trans                  &kp LS(ENTER)  &kp LS(DEL)   &trans     &kp LS(TAB)  &NBSP
             >;
         };
 
@@ -313,9 +313,9 @@
             //                    |     |     |     |   |     | HOME | END |
 
             bindings = <
-&kp DEL          &kp N3      &EAcuteSymRAlt 6 0  &GuillemetRight  &kp N5      &kp MINUS     &kp RA(N0)  &kp LS(EQUAL)  &kp N6      &LSymRAlt 6 LS(PERIOD)  &kp APOS    &kp EQUAL
-&kp PRINTSCREEN  &kp LS(N1)  &kp LS(N2)          &kp LS(N3)       &kp LS(N4)  &kp LS(N5)    &kp LS(N6)  &kp LS(N7)     &kp LS(N8)  &kp LS(N9)              &kp LS(N0)  &kp LS(MINUS)
-&kp F11          &kp F1      &kp F2              &kp F3           &kp F4      &kp F5        &kp F6      &kp F7         &kp F8      &kp F9                  &kp F10     &kp F12
+&kp DEL          &kp N3      &EAcuteSymRAlt 6 0  &GuillemetRight  &kp N5      &kp MINUS     &kp RA(N0)  &kp LS(EQUAL)  &kp N6      &LSymRAlt 6 LS(PERIOD)  &kp BACKSLASH  &kp EQUAL
+&kp PRINTSCREEN  &kp LS(N1)  &kp LS(N2)          &kp LS(N3)       &kp LS(N4)  &kp LS(N5)    &kp LS(N6)  &kp LS(N7)     &kp LS(N8)  &kp LS(N9)              &kp LS(N0)     &kp LS(MINUS)
+&kp F11          &kp F1      &kp F2              &kp F3           &kp F4      &kp F5        &kp F6      &kp F7         &kp F8      &kp F9                  &kp F10        &kp F12
                                                  &none            &none       &trans        &tog 4      &kp HOME       &kp END
             >;
         };
