@@ -139,6 +139,11 @@
             bindings = <&to 0>;
             key-positions = <24 35>;
         };
+
+        escape {
+            bindings = <&kp ESC>;
+            key-positions = <36 37>;
+        };
     };
 
     //
@@ -185,7 +190,6 @@
         ALT_CODE(Quarter, 0, 1, 8, 8) // ¼
         ALT_CODE(Half, 0, 1, 8, 9) // ½
         ALT_CODE(ThreeQuarters, 0, 1, 9, 0) // ¾
-
         AGraveShift: AGraveShift {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -245,10 +249,10 @@
             //                   |     |     |     |   |     |      |     |
 
             bindings = <
-&kp RA(N3)    &kp LS(B)       &EAcuteShiftRAlt 3 0  &kp LS(P)               &kp LS(O)      &EGraveShift  &kp SLASH  &kp LS(V)    &kp LS(D)               &LShiftRAlt 3 LS(L)  &kp LS(J)       &CCedillaShift
-&GraveAccent  &hm LGUI LS(Q)  &hm LALT LS(U)        &hm LEFT_CONTROL LS(I)  &kp LS(E)      &kp COMMA     &kp LS(C)  &kp LS(T)    &hm LEFT_CONTROL LS(S)  &hm LALT LS(R)       &hm LGUI LS(N)  &kp LS(SEMICOLON)
-&kp LS(W)     &AGraveShift    &kp LS(Y)             &kp LS(X)               &kp PERIOD     &kp LS(K)     &kp LS(M)  &kp LS(A)    &kp LS(G)               &kp LS(H)            &kp LS(F)       &kp LS(Z)
-                                                    &trans                  &kp LS(ENTER)  &kp LS(DEL)   &trans     &kp LS(TAB)  &NBSP
+&kp RA(N3)    &kp LS(B)       &EAcuteShiftRAlt 3 0  &kp LS(P)               &kp LS(O)      &EGraveShift    &kp SLASH  &kp LS(V)    &kp LS(D)               &LShiftRAlt 3 LS(L)  &kp LS(J)       &CCedillaShift
+&GraveAccent  &hm LGUI LS(Q)  &hm LALT LS(U)        &hm LEFT_CONTROL LS(I)  &kp LS(E)      &kp COMMA       &kp LS(C)  &kp LS(T)    &hm LEFT_CONTROL LS(S)  &hm LALT LS(R)       &hm LGUI LS(N)  &kp LS(SEMICOLON)
+&kp LS(W)     &AGraveShift    &kp LS(Y)             &kp LS(X)               &kp PERIOD     &kp LS(K)       &kp LS(M)  &kp LS(A)    &kp LS(G)               &kp LS(H)            &kp LS(F)       &kp LS(Z)
+                                                    &trans                  &kp LS(ENTER)  &kp LS(DEL)     &trans     &kp LS(TAB)  &NBSP
             >;
         };
 
@@ -335,7 +339,6 @@
 &trans  &trans           &trans            &trans             &trans      &trans           &trans       &trans      &trans    &trans  &trans          &trans
                                            &trans             &trans      &trans           &trans       &trans      &trans
             >;
-
         };
 
         MouseMedia {
