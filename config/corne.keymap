@@ -144,6 +144,16 @@
             bindings = <&kp ESC>;
             key-positions = <36 37>;
         };
+
+        LeftShift {
+            bindings = <&kp LSHFT>;
+            key-positions = <16 17>;
+        };
+
+        RightShift {
+            bindings = <&kp RSHFT>;
+            key-positions = <18 19>;
+        };
     };
 
     //
