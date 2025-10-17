@@ -8,7 +8,7 @@
 #define SYM 2
 #define ADJ 3
 #define EXTRA 4
-#define MACRO_TAP_MS 15
+#define MACRO_TAP_MS 10
 
 #define ALT_CODE(name, n1, n2, n3, n4)                                                     \
     name: name {                                                                           \
